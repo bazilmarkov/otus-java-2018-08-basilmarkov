@@ -2,7 +2,7 @@ package ru.otus;
 
 import java.lang.instrument.Instrumentation;
 
-public class InstrumentationAgent {
+public class MemoryMeasurementAgent {
 
     private static volatile Instrumentation globalInstrumentation;
 
@@ -12,7 +12,7 @@ public class InstrumentationAgent {
 
     public static long getObjectSize(final Object object) {
         if (globalInstrumentation == null) {
-            throw new IllegalStateException("Agent not initialized.");
+            throw new IllegalStateException("Agent not initialized");
         }
         return globalInstrumentation.getObjectSize(object);
     }
