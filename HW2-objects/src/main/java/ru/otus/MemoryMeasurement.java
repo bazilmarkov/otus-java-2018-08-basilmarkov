@@ -9,10 +9,15 @@ public class MemoryMeasurement {
                 ", size: " + MemoryMeasurementAgent.getObjectSize(object) + " bytes");
     }
 
+    public static void printDeepObjectSize(Object object) {
+        System.out.println(object.toString() + " Object type: " + object.getClass() +
+                ", size: " + MemoryMeasurementAgent.getObjectDeepSize(object) + " bytes");
+    }
+
     public static void main(String[] arguments) {
         String emptyString = "";
         String string = "Estimating Object Size Using Instrumentation";
-        String[] stringArray = { emptyString, string, "random string и кириллица" };
+        String[] stringArray = {emptyString, string, "random string и кириллица"};
         String[] anotherStringArray = new String[100];
         ArrayList<String> stringList = new ArrayList<String>();
         StringBuilder stringBuilder = new StringBuilder(100);
@@ -27,12 +32,22 @@ public class MemoryMeasurement {
 
         class EmptyClass {
         }
+
+        class EmptyClass2 {
+        }
+
         EmptyClass emptyClass = new EmptyClass();
 
-        class StringClass {
+        class StringClass extends EmptyClass2 {
             public String s;
+            public EmptyClass deepObjectexample = new EmptyClass();
+            public EmptyClass anotherEmptyClass;
+
+            public StringClass(EmptyClass anotherEmptyClass) {
+                this.anotherEmptyClass = anotherEmptyClass;
+            }
         }
-        StringClass stringClass = new StringClass();
+        StringClass stringClass = new StringClass(new EmptyClass());
 
         printObjectSize(emptyString);
         printObjectSize(string);
@@ -50,7 +65,7 @@ public class MemoryMeasurement {
         printObjectSize(MyFirstNameRandomRepresent.Basil);
         printObjectSize(object);
         printObjectSize(emptyClass);
-        printObjectSize(stringClass);
+        printDeepObjectSize(stringClass);
     }
 
     public enum MyFirstNameRandomRepresent {
