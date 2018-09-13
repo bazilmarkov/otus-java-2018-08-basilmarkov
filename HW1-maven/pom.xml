@@ -43,7 +43,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.Main</mainClass>
+                            <mainClass>ru.otus.CustomArrayList</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
