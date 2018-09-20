@@ -30,7 +30,7 @@ public class MyArrayList<T> implements List<T> {
 
 
     public Object[] toArray() {
-        return new Object[0];
+        throw new RuntimeException();
     }
 
     public void clear() {
@@ -47,7 +47,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        throw new RuntimeException();
     }
 
     public ListIterator<T> listIterator() {
@@ -55,15 +55,15 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        throw new RuntimeException();
     }
 
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new RuntimeException();
     }
 
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new RuntimeException();
     }
 
     public Iterator<T> iterator() {
@@ -87,7 +87,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean contains(Object o) {
-        return false;
+        throw new RuntimeException();
     }
 
     public int size() {
@@ -95,11 +95,11 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public ListIterator<T> listIterator(int index) {
-        return null;
+        throw new RuntimeException();
     }
 
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new RuntimeException();
     }
 
     public boolean isEmpty() {
@@ -111,26 +111,27 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public int indexOf(Object o) {
-        return 0;
+        throw new RuntimeException();
     }
 
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        throw new RuntimeException();
     }
 
     public boolean remove(Object o) {
-        return false;
+        throw new RuntimeException();
     }
 
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new RuntimeException();
     }
 
     public void add(int index, T element) {
+        throw new RuntimeException();
     }
 
     public T remove(int index) {
-        return null;
+        throw new RuntimeException();
     }
 
     @SuppressWarnings("unchecked")
@@ -167,29 +168,27 @@ public class MyArrayList<T> implements List<T> {
 
 
         public boolean hasPrevious() {
-            return false;
+            throw new RuntimeException();
         }
 
 
         public T previous() {
-            return null;
+            throw new RuntimeException();
         }
 
 
         public int nextIndex() {
-            return 0;
+            throw new RuntimeException();
         }
 
 
         public int previousIndex() {
-            if (true) {
-                throw new RuntimeException();
-            }
-            return 0;
+            throw new RuntimeException();
         }
 
 
         public void remove() {
+            throw new RuntimeException();
         }
 
 
@@ -199,6 +198,7 @@ public class MyArrayList<T> implements List<T> {
 
 
         public void add(T t) {
+            throw new RuntimeException();
         }
     }
 
