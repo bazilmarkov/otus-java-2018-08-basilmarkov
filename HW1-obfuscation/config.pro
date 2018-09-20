@@ -1,4 +1,4 @@
--keep public class ru.otus.CustomArrayList {
+-keep public class ru.otus.MyArrayListOld {
     public static void main(java.lang.String[]);
 }
 

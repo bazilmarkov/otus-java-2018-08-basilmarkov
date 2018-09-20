@@ -48,7 +48,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.CustomArrayList</mainClass>
+                            <mainClass>ru.otus.MyArrayListOld</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
