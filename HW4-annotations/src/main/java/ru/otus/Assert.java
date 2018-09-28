@@ -8,7 +8,7 @@ public class Assert {
 
 
     public static void fail(String message) {
-        if (message == null) throw new AssertionError();
+        if (message == null) throw new AssertionError("Test failed");
         else throw new AssertionError(message);
     }
 
@@ -49,10 +49,11 @@ public class Assert {
     public static void assertEquals(String message, Object expected,
                                     Object actual) {
         if (equalsRegardingNull(expected, actual)) {
+            System.out.println("Test passed");
             return;
         }
         if (expected instanceof String && actual instanceof String) {
-            String cleanMessage = message == null ? "" : message;
+            String cleanMessage = message == null ? "Test failed" : message;
             throw new AssertionError(cleanMessage);
         } else {
             fail(message);

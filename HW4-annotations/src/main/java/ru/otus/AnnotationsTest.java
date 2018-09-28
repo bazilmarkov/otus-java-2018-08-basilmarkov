@@ -19,6 +19,6 @@ public class AnnotationsTest {
     @Test
     public void testIsEquals() {
         System.out.println("Starting test");
-        Assert.assertEquals("Expected to equals", "1", "2");
+        Assert.assertEquals("Objects not equal", "1", "2");
     }
 }
