@@ -1,5 +1,7 @@
 package ru.otus;
 
+import ru.otus.error.AssertionError;
+
 public class Assert {
 
     protected Assert() {

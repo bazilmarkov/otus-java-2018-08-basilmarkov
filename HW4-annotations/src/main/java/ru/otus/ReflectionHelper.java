@@ -1,19 +1,27 @@
 package ru.otus;
 
+import com.google.common.reflect.ClassPath;
+
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by tully.
- */
-@SuppressWarnings("SameParameterValue")
+
 class ReflectionHelper {
     private ReflectionHelper() {
     }
 
+    /**
+     *
+     * @param type
+     * @param args
+     * @param <T>
+     * @return
+     */
     static <T> T instantiate(Class<T> type, Object... args) {
         try {
             if (args.length == 0) {
@@ -29,6 +37,12 @@ class ReflectionHelper {
         return null;
     }
 
+    /**
+     *
+     * @param object
+     * @param name
+     * @return
+     */
     static Object getFieldValue(Object object, String name) {
         Field field = null;
         boolean isAccessible = true;
@@ -47,6 +61,12 @@ class ReflectionHelper {
         return null;
     }
 
+    /**
+     *
+     * @param object
+     * @param name
+     * @param value
+     */
     static void setFieldValue(Object object, String name, Object value) {
         Field field = null;
         boolean isAccessible = true;
@@ -64,6 +84,13 @@ class ReflectionHelper {
         }
     }
 
+    /**
+     * Вызывает метод с переменным числом аргументов
+     * @param object
+     * @param name
+     * @param args
+     * @return
+     */
     static Object callMethod(Object object, String name, Object... args) {
         Method method = null;
         boolean isAccessible = true;
@@ -86,6 +113,12 @@ class ReflectionHelper {
         return null;
     }
 
+    /**
+     * Возвращает массив методов обьекта
+     * @param object
+     * @param annotation
+     * @return
+     */
     static Method[] getMethods(Object object, Class<? extends Annotation> annotation) {
         Method[] methods;
         try {
@@ -101,6 +134,11 @@ class ReflectionHelper {
         return null;
     }
 
+    /**
+     * Вызывает каждый из переданного массива методов обьекта
+     * @param testClass
+     * @param methods
+     */
     static void callMethods(Object testClass, Method[] methods) {
         for (Method method : methods) {
             ReflectionHelper.callMethod(testClass, method.getName(), (Object[]) null);
@@ -108,7 +146,31 @@ class ReflectionHelper {
 
     }
 
+    /**
+     *
+     * @param args
+     * @return
+     */
     static private Class<?>[] toClasses(Object[] args) {
         return Arrays.stream(args).map(Object::getClass).toArray(Class<?>[]::new);
+    }
+
+    /**
+     * Возвращает  List классов в package с использованием библиотеки GoogleGuava
+     * @param packageName
+     * @return
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
+    static ArrayList<Class<?>> getClasses(String packageName)
+            throws ClassNotFoundException, IOException {
+        ArrayList<Class<?>> classes = new ArrayList<>();
+        for (ClassPath.ClassInfo classInfo : ClassPath.from(Thread.currentThread().getContextClassLoader()).getTopLevelClasses(packageName)) {
+            Class cls = classInfo.load();
+            if (!cls.isInterface()) {
+                classes.add(cls);
+            }
+        }
+        return classes;
     }
 }
