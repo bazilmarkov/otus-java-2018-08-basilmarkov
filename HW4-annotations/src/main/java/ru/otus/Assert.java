@@ -59,7 +59,7 @@ public class Assert {
             throw new AssertionError(cleanMessage);
         } else {
             fail(message);
-        }
+        } 
     }
 
 }
